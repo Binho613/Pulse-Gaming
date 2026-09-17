@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PULSE GAMING | Aracaju - SE</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Teko:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --pulse-dark: #0b0d13;
+            --pulse-blue: #0066ff;
+            --pulse-blue-glow: rgba(0, 102, 255, 0.5);
+        }
+
+        body {
+            background-color: var(--pulse-dark);
+            color: #ffffff;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .font-teko { font-family: 'Teko', sans-serif; text-transform: uppercase; }
+
+        .neon-text {
+            text-shadow: 0 0 10px var(--pulse-blue-glow), 0 0 20px var(--pulse-blue-glow);
+        }
+
+        .neon-border {
+            border: 1px solid var(--pulse-blue) !important;
+            box-shadow: 0 0 15px var(--pulse-blue-glow);
+        }
+
+        .neon-button {
+            background: transparent;
+            border: 1px solid rgba(0, 102, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .neon-button:hover, .neon-button.active {
+            background: var(--pulse-blue);
+            box-shadow: 0 0 20px var(--pulse-blue);
+            color: white;
+            border-color: var(--pulse-blue);
+            transform: translateY(-2px);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--pulse-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--pulse-blue); border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="fixed top-0 w-full z-50 bg-[#0b0d13]/90 backdrop-blur-md border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center gap-3">
+                    <img src="logo.png" alt="Pulse Gaming" class="h-12 w-auto">
+                    <span class="font-teko text-3xl tracking-wider text-white neon-text">Pulse Gaming</span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8 font-teko text-xl tracking-wide">
+                        <a href="#roster" class="hover:text-[#0066ff] transition-colors">Lines</a>
+                        <a href="#recrutamento" class="hover:text-[#0066ff] transition-colors">Recrutamento</a>
+                        <a href="#feedback" class="hover:text-[#0066ff] transition-colors">Avaliação</a>
+                        <a href="#recrutamento" class="neon-button px-6 py-1 rounded-sm text-[#0066ff]">Junte-se a nós</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden pt-20">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#0b0d13]"></div>
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#0066ff]/10 rounded-full blur-[120px]"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-4">
+            <h2 class="text-[#0066ff] font-teko text-2xl tracking-[0.5em] mb-4">Região: Aracaju, Sergipe</h2>
+            <h1 class="text-7xl md:text-9xl font-teko font-bold leading-none mb-6">PULSE <span class="text-[#0066ff] neon-text">GAMING</span></h1>
+            <p class="max-w-3xl mx-auto text-gray-400 text-lg md:text-xl font-normal leading-relaxed">
+                A Pulse Gaming não é apenas uma organização, é o epicentro da excelência tática e performance bruta no cenário competitivo global.
+            </p>
+        </div>
+    </section>
+
+    <!-- ROSTER SECTION -->
+    <section id="roster" class="py-24 bg-[#0b0d13]">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="font-teko text-6xl mb-4 uppercase">Nossas <span class="text-[#0066ff]">Lines</span></h2>
+                <div class="flex flex-wrap justify-center gap-3 mt-10" id="filter-container">
+                    <button onclick="filterRoster('Valorant')" class="filter-btn neon-button px-6 py-2 font-teko text-xl tracking-widest">Valorant</button>
+                    <button onclick="filterRoster('Valorant Academy')" class="filter-btn neon-button px-6 py-2 font-teko text-xl tracking-widest">Valorant Academy</button>
+                    <button onclick="filterRoster('Valorant Inclusivo')" class="filter-btn neon-button px-6 py-2 font-teko text-xl tracking-widest">Valorant Inclusivo</button>
+                    <button onclick="filterRoster('CS2')" class="filter-btn neon-button px-6 py-2 font-teko text-xl tracking-widest">CS2</button>
+                    <button onclick="filterRoster('CS2 Academy')" class="filter-btn neon-button px-6 py-2 font-teko text-xl tracking-widest">CS2 Academy</button>
+                </div>
+            </div>
+
+            <div id="player-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 min-h-[400px]">
+                <!-- Cards renderizados via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO PENEIRA PULSE -->
+    <section id="recrutamento" class="max-w-6xl mx-auto px-6 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="font-teko text-6xl text-white mb-4">PENEIRA <span class="text-blue-500 neon-text">PULSE</span></h2>
+                <p class="text-neutral-400 text-sm md:text-base mb-6">
+                    Buscamos atletas de alto rendimento. Você tem a precisão necessária para o próximo nível?
+                </p>
+                <ul class="space-y-3 text-sm text-neutral-300">
+                    <li class="flex items-center gap-2"><span class="w-2 h-2 bg-blue-500"></span> Idade mínima: 16 anos</li>
+                    <li class="flex items-center gap-2"><span class="w-2 h-2 bg-blue-500"></span> Discord e Microfone de qualidade</li>
+                    <li class="flex items-center gap-2"><span class="w-2 h-2 bg-blue-500"></span> Disponibilidade para treinos (Praccs)</li>
+                </ul>
+            </div>
+            <div class="bg-[#0e111a] border border-white/10 p-8 rounded-2xl">
+                <form id="peneira-form" class="space-y-4">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-xs text-neutral-400 block mb-1">Nome Completo</label>
+                            <input type="text" name="name" required placeholder="Ex: Erick Santos" class="w-full bg-neutral-900 border border-neutral-800 p-3 rounded text-sm text-white focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="text-xs text-neutral-400 block mb-1">Nickname</label>
+                            <input type="text" name="nickname" required placeholder="Ex: Aspas" class="w-full bg-neutral-900 border border-neutral-800 p-3 rounded text-sm text-white focus:outline-none focus:border-blue-500">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="text-xs text-neutral-400 block mb-1">Discord Tag</label>
+                            <input type="text" name="discord" required placeholder="Ex: usuario#0000" class="w-full bg-neutral-900 border border-neutral-800 p-3 rounded text-sm text-white focus:outline-none focus:border-blue-500">
+                        </div>
+                        <div>
+                            <label class="text-xs text-neutral-400 block mb-1">Rank / Elo Atual</label>
+                            <input type="text" name="rank" required placeholder="Ex: Imortal 3 / Level 20" class="w-full bg-neutral-900 border border-neutral-800 p-3 rounded text-sm text-white focus:outline-none focus:border-blue-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-xs text-neutral-400 block mb-1">Line Pretendida</label>
+                        <select name="line" class="w-full bg-neutral-900 border border-neutral-800 p-3 rounded text-sm text-white focus:outline-none focus:border-blue-500">
+                            <option value="Valorant">Valorant</option>
+                            <option value="Valorant Academy">Valorant Academy</option>
+                            <option value="Valorant Inclusivo">Valorant Inclusivo</option>
+                            <option value="CS2">CS2</option>
+                            <option value="CS2 Academy">CS2 Academy</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs text-neutral-400 block mb-1">Experiência Competitiva / Observações</label>
+                        <textarea name="experience" rows="3" required placeholder="Histórico competitivo, horários disponíveis, etc." class="w-full bg-neutral-900 border border-neutral-800 p-3 rounded text-sm text-white focus:outline-none focus:border-blue-500"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 transition py-3 rounded font-teko text-2xl uppercase tracking-wider text-white">ENVIAR CANDIDATURA</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO DE AVALIAÇÃO E FEEDBACK -->
+    <section id="feedback" class="max-w-6xl mx-auto px-6 py-16">
+        <div class="max-w-3xl mx-auto text-center mb-10">
+            <h2 class="font-teko text-6xl text-white mb-4">AVALIAÇÃO <span class="text-blue-500 neon-text">&amp; FEEDBACK</span></h2>
+            <p class="text-neutral-400 text-sm md:text-base">Ajude a Pulse Gaming a evoluir reportando bugs ou sugerindo melhorias</p>
+        </div>
+        <div class="max-w-3xl mx-auto bg-[#0e111a] border border-white/10 p-8 rounded-2xl">
+            <form id="feedback-form" class="space-y-4">
+                <div>
+                    <label class="text-xs text-neutral-400 block mb-1">Nome de Usuário / Nickname (opcional)</label>
+                    <input type="text" name="user_name" placeholder="Seu nick ou deixe em branco para anônimo" class="w-full bg-neutral-900 border border-neutral-800 p-3 rounded text-sm text-white focus:outline-none focus:border-blue-500">
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="text-xs text-neutral-400 block mb-1">Categoria / Tipo</label>
+                        <select name="category" required class="w-full bg-neutral-900 border border-neutral-800 p-3 rounded text-sm text-white focus:outline-none focus:border-blue-500">
+                            <option value="Erro / Bug">Erro / Bug</option>
+                            <option value="Sugestão">Sugestão</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs text-neutral-400 block mb-1">Avaliação</label>
+                        <select name="rating" required class="w-full bg-neutral-900 border border-neutral-800 p-3 rounded text-sm text-white focus:outline-none focus:border-blue-500">
+                            <option value="1">1 - Péssimo</option>
+                            <option value="2">2 - Ruim</option>
+                            <option value="3">3 - Regular</option>
+                            <option value="4">4 - Bom</option>
+                            <option value="5" selected>5 - Excelente</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="text-xs text-neutral-400 block mb-1">Mensagem</label>
+                    <textarea name="message" rows="5" required placeholder="Descreva o erro detalhado ou sua sugestão" class="w-full bg-neutral-900 border border-neutral-800 p-3 rounded text-sm text-white focus:outline-none focus:border-blue-500"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-500 transition py-3 rounded font-teko text-2xl uppercase tracking-wider text-white">ENVIAR FEEDBACK</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-white/10 text-center text-gray-500">
+        <img src="logo.png" alt="Pulse Logo" class="h-10 mx-auto mb-4 opacity-50">
+        <p class="text-sm tracking-widest uppercase">&copy; 2026 PULSE GAMING ESPORTS. TODOS OS DIREITOS RESERVADOS.</p>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script>
+        const API_URL = 'http://127.0.0.1:8000';
+        let allPlayers = [];
+        let currentLine = 'Valorant';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchPlayers();
+        });
+
+        // Lógica do Roster
+        async function fetchPlayers() {
+            try {
+                const response = await fetch(`${API_URL}/players`);
+                allPlayers = await response.json();
+                filterRoster(currentLine);
+            } catch (err) {
+                document.getElementById('player-grid').innerHTML = '<p class="col-span-full text-center text-red-500 font-teko text-2xl">ERRO DE CONEXÃO COM O SERVIDOR.</p>';
+            }
+        }
+
+        function filterRoster(line) {
+            currentLine = line;
+            const grid = document.getElementById('player-grid');
+            
+            const filteredPlayers = allPlayers.filter(p => 
+                p.team_tier.trim().toLowerCase() === line.trim().toLowerCase()
+            );
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.innerText.trim().toLowerCase() === line.trim().toLowerCase());
+            });
+
+            if (filteredPlayers.length === 0) {
+                grid.innerHTML = `<div class="col-span-full py-20 opacity-30 text-center font-teko text-3xl tracking-widest">NENHUM ATLETA CADASTRADO NESTA LINE.</div>`;
+                return;
+            }
+
+            grid.innerHTML = filteredPlayers.map(p => `
+                <div class="glass-card group hover:neon-border p-4 rounded-lg transition-all duration-300">
+                    <div class="relative mb-6 overflow-hidden rounded-sm h-72 bg-gray-900">
+                        <img src="${p.photo_url || 'https://via.placeholder.com/300x400'}" alt="${p.nickname}" 
+                             class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-100">
+                    </div>
+                    <div class="px-2">
+                        <h3 class="font-teko text-4xl mb-1 tracking-tighter">${p.nickname}</h3>
+                        <p class="text-[#0066ff] font-teko text-xl mb-2 tracking-[0.15em] uppercase font-semibold">${p.role}</p>
+                        <p class="text-gray-500 text-xs uppercase tracking-widest font-medium">${p.real_name}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Lógica do Formulário de Peneira (Inscrição)
+        document.getElementById('peneira-form').onsubmit = async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const formData = new FormData(form);
+            const payload = Object.fromEntries(formData);
+            try {
+                const res = await fetch(`${API_URL}/recruitment`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+                if (res.ok) {
+                    alert("Inscrição enviada com sucesso! Boa sorte.");
+                    form.reset();
+                } else {
+                    alert("Erro ao enviar dados. Verifique as informações.");
+                }
+            } catch (err) {
+                alert("Erro de conexão com o servidor.");
+            }
+        };
+
+        // Lógica do Formulário de Feedback
+        document.getElementById('feedback-form').onsubmit = async (e) => {
+            e.preventDefault();
+            const form = e.target;
+            const payload = {
+                user_name: form.user_name.value || "Anônimo",
+                category: form.category.value,
+                rating: parseInt(form.rating.value),
+                message: form.message.value
+            };
+
+            try {
+                const res = await fetch(`${API_URL}/feedback`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+                if (res.ok) {
+                    alert("Feedback enviado com sucesso! Obrigado por ajudar a Pulse Gaming.");
+                    form.reset();
+                } else {
+                    alert("Erro ao enviar feedback. Verifique as informações.");
+                }
+            } catch (err) {
+                alert("Erro de conexão com o servidor.");
+            }
+        };
+    </script>
+</body>
+</html>
